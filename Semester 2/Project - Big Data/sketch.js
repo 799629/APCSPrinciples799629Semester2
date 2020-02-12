@@ -2,8 +2,8 @@
 // 	2/7/20
 //  This is a comment
 
-var stats
-var players
+var stats;
+var players;
 
 function setup(){
   var cnv = createCanvas(800, 800);
