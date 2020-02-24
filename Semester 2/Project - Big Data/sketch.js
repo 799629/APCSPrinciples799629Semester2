@@ -4,16 +4,39 @@
 
 var stats;
 var players;
+var playerStat;
+var statLoc;
+var statColumn;
+var userInput;
+var statsArray = [];
 
 function setup(){
   var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);
   background(5,5,5);
   fill(22, 30, 150);
-  loadStats();
-  loadPlayerStats("Kobe Bryant");
+  loadStats()
+
+  input = createInput('');
+  input.position(300, 400);
+
+  button = createButton('submit');
+  button.position(input.x + input.width, 400);
+
+  button.mouseClicked(kawika);
+
+
+  //loadPlayerStats("Kobe Bryant", statColumn);
   console.log(statsArray[10]);
 }//End Setup
+
+function kawika(){
+  name = input.value();
+  loadPlayerStats(name);
+  console.log("CHOSEN PLAYER IS " + name);
+  input.value('')
+  
+}
 
 function draw(){
   createPlayerSelectionList();
@@ -22,11 +45,19 @@ function draw(){
 
 //chooses the row of the selected player and shows the stats of this player
 function loadPlayerStats(player){
-  statsArray = stats.findRows(player,2);
+  player = str(player);
+  statsArray = stats.findRows(player, 2);
   if(statsArray.length === 0){
-    statsArray = stats.findRows(player+"*",2);
+    statsArray = stats.findRows(player+"*", 2);
   }//end if statement
 }//end function loadPlayerStats
+
+function createPlayerSelectionList() {
+  playerSel = createSelect(true);
+  playerSel.position((windowWidth-width)/2 + 270, (windowHeight-height)/2 + 40);
+  // locate at 270,40 in canvas coordinates
+  playerSel.size(150,headerHeight-50);
+}
 
 //finds a specific stat in the table
 function aggregateStats(player, stat){
@@ -36,16 +67,3 @@ function aggregateStats(player, stat){
   }//end for loop
   return results;
 }//end function aggregateStats
-
-//creates a UI that allows the user to select which player's stats they want to look at
-function createPlayerSelectionList(){
-  playerSel = createSelect(true);
-  playerSel.position((windowWidth-width)/2 + 270, (windowHeight-height)/2 + 40);
-}//end function createPlayerSelectionList
-
-function getSelectedPlayers(){
-  var chosenPlayers = [];
-  for(var i = 0; i < playerSel.elt.selectedOptions.length; i++){
-    chosenPlayers.push(playerSel.elt.selectedOptions[i].value);
-  }//end for
-}//end function getSelectedPlayers
