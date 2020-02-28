@@ -26,20 +26,21 @@ function setup(){
   button.mouseClicked(kawika);
 
 
-  //loadPlayerStats("Kobe Bryant", statColumn);
-  console.log(statsArray[10]);
+  //loadPlayerStats("Kobe Bryant", 2);
+  //console.log(statsArray[10]);
 }//End Setup
 
 function kawika(){
   name = input.value();
   loadPlayerStats(name);
   console.log("CHOSEN PLAYER IS " + name);
-  input.value('')
-  
+  //input.value('')
+  loadPlayerStats(name, 2);
+  console.log(statsArray[10]);
 }
 
 function draw(){
-  createPlayerSelectionList();
+  //createPlayerSelectionList();
   getSelectedPlayers();
 }//end function draw
 
@@ -49,7 +50,9 @@ function loadPlayerStats(player){
   statsArray = stats.findRows(player, 2);
   if(statsArray.length === 0){
     statsArray = stats.findRows(player+"*", 2);
-  }//end if statement
+  }else if(statsArray.length === 0){
+    console.log('Check your spelling or another player');
+  }
 }//end function loadPlayerStats
 
 function createPlayerSelectionList() {
