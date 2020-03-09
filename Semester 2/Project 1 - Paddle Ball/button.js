@@ -1,5 +1,5 @@
 //Kawika Tu
-//09/03/19
+//03/02/20
 //Attraction Repulsion
 class Button{
   constructor(x, y, w, h, text, clr, id){
@@ -7,9 +7,12 @@ class Button{
     this.w = w;
     this.h = h;
     this.clr = clr;
-    this.textclr = color(0);;
+    this.textclr = color(0);
     this.text = text;
     this.id = id;
+    if(this.id === 5){
+      this.textclr = color(255);
+    }
   }
   run(){
     this.render();
@@ -33,21 +36,27 @@ class Button{
         loadonce = 0;
         gameState = 2;
         groundDamage = 0;
+        difficulty = 0;
       }else if(this.id === 1){
         startingBalls = 6;
         trackingspeed = 0.2;
         loadonce = 0;
         gameState = 2;
         groundDamage = .05;
+        difficulty = 1;
       }else if(this.id === 2){
         startingBalls = 9;
         trackingspeed = 0.1;
         loadonce = 0;
         gameState = 2;
-        groundDamage = .1
+        groundDamage = .15
+        difficulty = 2;
       }else if(this.id === 3){
         gameState = 4;
       }else if(this.id === 4){
+        background(5, 5, 5);
+        gameState = 1;
+      }else if(this.id === 5){
         background(5, 5, 5);
         gameState = 1;
       }

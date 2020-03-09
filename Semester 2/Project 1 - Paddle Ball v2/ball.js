@@ -16,10 +16,12 @@ class Ball{
     this.render();
     this.removeBall();
   }//run end
+  
   render(){
     fill(this.clr);
     ellipse(this.loc.x, this.loc.y, this.w, this.w);
   }//render end
+
   checkEdges(){
     if(this.loc.x < 0){
       this.vel.x = -1*this.vel.x;
