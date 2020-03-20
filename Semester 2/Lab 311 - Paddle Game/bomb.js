@@ -1,21 +1,20 @@
 //Kawika Tu
 //03/02/20
 //Attraction Repulsion
-class Ball{
+class Bomb{
   constructor(x,y,dx,dy,i){
     this.loc = createVector(x, y);
     this.vel = createVector(dx, dy);
     this.acc = createVector(0,0.1);
-    this.clr = color(random(255),random(255),random(255));
-    this.w = 15;
+    this.clr = color(255,10,10);
+    this.w = 40;
     this.id = i;
   }//constructor end
   run(){
     this.checkEdges();
     this.update();
     this.render();
-
-    this.removeBall();
+    this.removeBomb();
   }//run end
   render(){
     fill(this.clr);
@@ -23,16 +22,15 @@ class Ball{
   }//render end
   checkEdges(){
     if(this.loc.x < 0){
-      this.vel.x = -this.vel.x;
+      this.vel.x = -1*this.vel.x;
     }
     if(this.loc.x > width){
-      this.vel.x = -this.vel.x;
+      this.vel.x = -1*this.vel.x;
     }
     if(this.loc.y < 0){
-      this.vel.y = -this.vel.y;
+      this.vel.y = -1*this.vel.y;
     }
     if(this.loc.y > height){
-      health = health - groundDamage;
       this.vel.y = -this.vel.y;
     }
     if(this.loc.y > 820){
@@ -49,34 +47,21 @@ class Ball{
     }//if statement end
   }//isColliding end
 
-  removeBall(){
-    for(var i = balls.length - 1; i >= 0; i--){
-      if(balls[i].isColliding()){
-        if(this.vel.y > 0){
-          score = score +1;
-          balls.splice(i,1);
-        }
-        else if(this.vel.y < 0){
-          health = health - 1;
-          balls.splice(i,1);
-        }
-        if(health < 1){
+  removeBomb(){
+    for(var i = bombs.length - 1; i >= 0; i--){
+      if(bombs[i].isColliding()){
+        loadonce = 0;
+        gameState = 3;
+        bombs.splice(i,1);
+      }//end if vel>0 statement
+        if(health < .1){
           gameState = 3;
-        }else if(balls.length < 1){
-          startingBalls = startingBalls + 2;
-          if(difficulty > 0 && startingBalls > 10){
-            startingBombs = 2
-          }
-          loadonce = 0;
-          gameState = 2;
         }
       }//if statament end
-    }//for loop ends
-  }//removeBall end
+    }//for loop end
 
   update(){
     this.vel.add(this.acc);
     this.loc.add(this.vel);
   }//update end
-
-}//Class end
+  }//Class end

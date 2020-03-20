@@ -18,27 +18,21 @@ class Button{
   render(){
     rectMode(CENTER);
     fill(this.clr);
-    rect(this.loc.x, this.loc.y, this.w, this.h, 0);
+    rect(this.loc.x, this.loc.y, this.w, this.h, 20);
     textAlign(CENTER);
-    textSize(3);
+    textSize(32);
     fill(this.textclr);
     text(this.text, this.loc.x, this.loc.y + this.h/4);
   }//creates button object
 
   mouseCheck(){
-    if((mouseX > this.loc.x - this.w) && (mouseX < this.loc.x + this.w) && (mouseY > this.loc.y - this.h) && (mouseY < this.loc.y + this.h) && (mouseIsPressed)){
-      if(this.id === 1){
-        loadonce = 0;
+    if(mouseX > this.loc.x - this.w/2 && mouseX < this.loc.x + this.w/2 && mouseY > this.loc.y - this.h/2 && mouseY < this.loc.y + this.h/2 && mouseIsPressed){
+      if(this.id === 0){
         gameState = 1;
-      }else if(this.id === 2){
-        loadonce = 0;
-        gameState = 2;
-      }else if(this.id === 3){
-        loadonce = 0;
-        gameState = 4;
-      }else if(this.id === 4){
-        gameState = 5;
-      }
+      }else if(this.id === 1){
+        gameState = 1;
+      }//end if statements
     }//starts the game when a button is pressed
   }//end of mouseCheck
+
 }//End of Class
