@@ -1,9 +1,6 @@
-//Kawika Tu
-//09/03/19
-//Attraction Repulsion
 class Food{
   constructor(){
-    this.loc = createVector((20*int(random(0,40))),(int(random(0,40))*20));
+    this.loc = createVector((20*int(random(0,int(width/19)))),(int(random(0,int(height/19)))*20));
     this.clr = color(255,0,0);
     //this.id = id
   }
@@ -14,9 +11,12 @@ class Food{
   }
 
   update(){
-    if((this.loc.y === snakeHeady) && (this.loc.x === snakeHeadx)){
+    if((this.loc.y ===
+      snakeHead.loc.y) &&
+      (this.loc.x ===
+        snakeHead.loc.x)){
       this.loc = createVector((20*int(random(0,40))),(int(random(0,40))*20));
-      score = score + 1;
+      score = score + 2;
     }
   }//update end
 
